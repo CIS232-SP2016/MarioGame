@@ -12,36 +12,34 @@ public class GameController {
 
 	@FXML
 	ImageView player;
-	
-	Image mario = new Image("http://vignette1.wikia.nocookie.net/mario/images/1/15/MarioNSMB2.png/revision/latest?cb=20120816162009");
-	
+
+	Image mario = new Image(
+			"http://vignette1.wikia.nocookie.net/mario/images/1/15/MarioNSMB2.png/revision/latest?cb=20120816162009");
+
 	Scene scene;
-	
-	public void setScene(Scene scene){
+
+	public void setScene(Scene scene) {
 		this.scene = scene;
-		scene.setOnKeyPressed( (KeyEvent e) -> 
-		{
-			if(e.getCode() == KeyCode.SPACE){
+		scene.setOnKeyPressed((KeyEvent e) -> {
+			if (e.getCode() == KeyCode.SPACE) {
 				fireAnimator();
 			}
 		});
 	}
-	
+
 	@FXML
-	void initialize(){
+	void initialize() {
 		player.setImage(mario);
 	}
-	
-	public void fireAnimator(){
+
+	public void fireAnimator() {
 		final long startNanoTime = System.nanoTime();
-		
-		new AnimationTimer()
-        {
-            public void handle(long currentNanoTime)
-            {
-            	double t = (currentNanoTime - startNanoTime) / 1000000000.0; 
-            	player.setX(t + player.getX());
-            }
-        }.start();
+
+		new AnimationTimer() {
+			public void handle(long currentNanoTime) {
+				double t = (currentNanoTime - startNanoTime) / 1000000000.0;
+				player.setX(t + player.getX());
+			}
+		}.start();
 	}
 }
